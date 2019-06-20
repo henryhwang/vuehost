@@ -10,4 +10,11 @@ describe("HelloWorld.vue", () => {
     });
     expect(wrapper.text()).to.include(msg);
   });
+  it("check class of hello", () => {
+    const msg = "new message";
+    const wrapper = shallowMount(HelloWorld, {
+      propsData: { msg }
+    });
+    expect(!wrapper.classes("hello"));
+  });
 });
