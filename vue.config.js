@@ -1,5 +1,8 @@
 // vue.config.js
 module.exports = {
   baseUrl: process.env.NODE_ENV === "production" ? "/vuehost/" : "/",
-  outputDir: "docs"
+  outputDir: "docs",
+  devServer: {
+    port: 8080
+  }
 };
