@@ -3,6 +3,6 @@ module.exports = {
   baseUrl: process.env.NODE_ENV === "production" ? "/vuehost/" : "/",
   outputDir: "docs",
   devServer: {
-    port: 8080
+    port: 6420
   }
 };
