@@ -30,7 +30,9 @@ export default {
   },
   methods: {
     showLogin: function() {
+      console.log('login: ' + this.login)
       this.login = true
+      console.log('login: ' + this.login)
     }
   }
 }
