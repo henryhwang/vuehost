@@ -16,7 +16,7 @@
 
 <script>
 import Counter from "@/components/Counter.vue";
-import { BEmbed } from 'bootstrap-vue'
+import { BEmbed } from "bootstrap-vue";
 
 export default {
   components: {
@@ -25,16 +25,23 @@ export default {
   },
   data() {
     return {
-      login: false
-    }
+      login: false,
+      buttonName: "Login"
+    };
   },
   methods: {
     showLogin: function() {
-      console.log('login: ' + this.login)
-      this.login = true
-      console.log('login: ' + this.login)
+      if (this.login === false) {
+        this.login = true;
+        this.buttonName = "Logout";
+      }
+      else {
+        this.login = false;
+        this.buttonName = "Login"
+      }
+      console.log("login: " + this.login);
     }
   }
-}
+};
 </script>
 
