@@ -2,14 +2,36 @@
   <div class="about">
     <h1>This is an about page</h1>
     <Counter></Counter>
+    <button v-on="showLogin">Login</button>
+    <div v-if="login">
+      <b-embed
+        type="iframe"
+        aspect="16by9"
+        src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+        allowfullscreen
+      ></b-embed>
+    </div>
   </div>
 </template>
 
 <script>
 import Counter from "@/components/Counter.vue";
+import { BEmbed } from 'bootstrap-vue'
+
 export default {
   components: {
-    Counter
+    Counter,
+    BEmbed
+  },
+  data() {
+    return {
+      login: false
+    }
+  },
+  methods: {
+    showLogin: function() {
+      this.login = true
+    }
   }
 }
 </script>
