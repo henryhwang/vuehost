@@ -2,7 +2,7 @@
   <div class="about">
     <h1>This is an about page</h1>
     <Counter></Counter>
-    <button v-on="showLogin">Login</button>
+    <button v-on:click="showLogin">Login</button>
     <div v-if="login">
       <b-embed
         type="iframe"
