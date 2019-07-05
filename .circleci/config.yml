@@ -7,5 +7,5 @@ jobs:
             - checkout
             - run: npm install
             - run: npm run test:unit -- --reporter mocha-junit-reporter
-            - save_test_results:
+            - store_test_results:
                 path: ./test-results.xml
