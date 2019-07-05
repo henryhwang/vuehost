@@ -3,20 +3,30 @@ jobs:
     build:
         docker:
             - image: circleci/node:4.8.2
+        environment:
+            - DEFAULT_USER: circleci
+            - DEFAULT_SUDOSU: sudo su
         steps:
-            - checkout
             - run:
                 name: update-npm
                 command: 'sudo npm install -g npm@latest'
+            - run:
+                name: create non-root DEFAULT_USER
+                command: sudo useradd -m $DEFAULT_USER
+            - checkout
+                path: ~$CIRCLE_PROJECT_REPONAME
+            - run:
+                name: set folder permissions for non-root user
+                command: sudo chown $DEFAULT_USER.$DEFAULT_USER ~$CIRCLE_PROJECT_REPONAME -R
             - restore_cache:
                 key: dependency-cache-{{ checksum "package.json" }}
             - run:
                 name: install required packages
-                command: npm install
+                command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && npm install"
             - save_cache:
                 paths:
                     - ./node_modules
                 key: dependency-cache-{{ checksum "package.json" }}
             - run:
                 name: unit test
-                command: 'sudo npm run test:unit'
+                command: $DEFAULT_SUDOSU $DEFAULT_USER -c "cd ~$CIRCLE_PROJECT_REPONAME && npm run test:unit"
