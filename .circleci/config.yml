@@ -6,6 +6,6 @@ jobs:
         steps:
             - checkout
             - run: npm install
-            - run: npm run test:unit -- --reporter mocha-junit-reporter
+            - run: npm run test:unit -- --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/unit/test-results/mocha/unit-tests-results.xml
             - store_test_results:
-                path: ./test-results.xml
+                path: ./tests/unit/test-results
