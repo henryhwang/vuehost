@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: circleci/node:4.8.2
+            - image: circleci/node:10.13.0
         environment:
             - DEFAULT_USER: circleci
             - DEFAULT_SUDOSU: sudo su
@@ -13,7 +13,7 @@ jobs:
             - run:
                 name: create non-root DEFAULT_USER
                 command: sudo useradd -m $DEFAULT_USER
-            - checkout
+            - checkout:
                 path: ~$CIRCLE_PROJECT_REPONAME
             - run:
                 name: set folder permissions for non-root user
