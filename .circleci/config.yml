@@ -1,0 +1,17 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: circleci/node:4.8.2
+        steps:
+            - checkout
+            - run:
+                name: update-npm
+                command: 'sudo npm install -g npm@latest'
+            - save_cache:
+                paths:
+                    - ./node_modules
+                key: dependency-cache-{{ checksum "package.json" }}
+            - run:
+                name: unit test
+                command: 'sudo npm run test:unit'
