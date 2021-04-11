@@ -2,7 +2,7 @@ name: Build vue app
 on: [push]
 jobs:
   build_vue:
-    runs_on: ubuntu_latest
+    runs-on: ubuntu_latest
     name: build
     steps:
       - name: check out the repo
